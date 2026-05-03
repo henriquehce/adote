@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adote por Amor BC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:   #FF6900;
+      --orange2:  #F54900;
+      --orange3:  #FF8904;
+      --magenta:  #E6007A;
+      --magenta2: #F6339A;
+      --green:    #00A63E;
+      --blue:     #155DFC;
+      --purple:   #9810FA;
+      --white:    #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--orange3) 0%, var(--orange) 50%, var(--orange2) 100%);
+      min-height: 100vh;
+      color: var(--white);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding: 0 105px;
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .nav-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .nav-brand-text strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav-brand-text span {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .nav-ig {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .nav-ig:hover { background: rgba(255,255,255,0.3); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.1); }
+    .nav-btn.active { background: var(--white); color: var(--orange2); }
+
+    .nav-divider {
+      width: 1px; height: 32px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 4px;
+    }
+
+    .nav-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      padding: 0 4px;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      padding-top: 141px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 105px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 105px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 141px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      line-height: 2rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--orange2);
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 6px 24px;
+      border-radius: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-white:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--white);
+      color: var(--white);
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 6px 20px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.2); }
+
+    .hero-image-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      aspect-ratio: 616/500;
+    }
+
+    .hero-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image-caption {
+      position: absolute;
+      bottom: 24px; left: 24px; right: 24px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      max-width: 1280px;
+      margin: 48px auto 0;
+      padding: 0 105px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 33px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── SECTION GENERIC ── */
+    section { max-width: 1280px; margin: 48px auto 0; padding: 0 105px; }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 1.25rem;
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 48px;
+    }
+
+    /* ── HOW TO HELP CARDS ── */
+    .help-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+
+    .help-card {
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .help-card.pink   { background: linear-gradient(135deg, rgba(246,51,154,.9), rgba(230,0,118,.9)); }
+    .help-card.green  { background: linear-gradient(135deg, rgba(0,201,80,.9), rgba(0,166,62,.9)); }
+    .help-card.blue   { background: linear-gradient(135deg, rgba(43,127,255,.9), rgba(21,93,252,.9)); }
+
+    .card-icon-circle {
+      width: 64px; height: 64px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+    }
+
+    .help-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; }
+    .help-card p  { font-size: 1rem; line-height: 1.625; color: rgba(255,255,255,0.9); margin-bottom: 32px; }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px;
+    }
+
+    /* ── ABOUT ── */
+    .about-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 49px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-box h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 24px; }
+    .about-box p  { font-size: 1.125rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+
+    .btn-outline-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--white);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin-top: 8px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .about-grid img {
+      width: 100%; height: 192px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    /* ── CATS / ADOPT CARDS ── */
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .cat-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .cat-img-wrap {
+      position: relative;
+    }
+
+    .cat-img-wrap img {
+      width: 100%; height: 256px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cat-age {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--magenta2);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .cat-body { padding: 24px; }
+
+    .cat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .cat-name { font-size: 1.5rem; font-weight: 700; }
+
+    .cat-gender {
+      background: rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.875rem;
+    }
+
+    .cat-desc { font-size: 1rem; line-height: 1.625; color: rgba(255,255,255,0.9); margin-bottom: 16px; }
+
+    .cat-badges { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+
+    .cat-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .check-green { color: #05DF72; font-size: 1.1rem; }
+    .check-yellow { color: #FDC700; font-size: 1.1rem; }
+
+    .btn-adopt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--magenta2);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-adopt:hover { opacity: 0.9; }
+
+    .cats-more {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .cats-more p { font-size: 1.125rem; color: rgba(255,255,255,0.9); margin-bottom: 12px; }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--magenta2), var(--purple));
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    /* ── IMPORTANT NOTICE ── */
+    .notice {
+      background: rgba(255,105,0,0.3);
+      border: 2px solid var(--orange3);
+      border-radius: 16px;
+      padding: 26px;
+      text-align: center;
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 49px;
+    }
+
+    .process-box h2 { font-size: 1.875rem; font-weight: 700; text-align: center; margin-bottom: 32px; }
+
+    .step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .step-num {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .step p  { font-size: 1.125rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
+
+    /* ── DONATE / SOS ── */
+    .donate-section {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 49px;
+    }
+
+    .donate-section h2 { font-size: 1.875rem; font-weight: 700; text-align: center; margin-bottom: 12px; }
+    .donate-section .sub { font-size: 1rem; text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 32px; }
+
+    .pix-box {
+      background: rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .pix-box h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; }
+
+    .pix-key {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.3);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 1.125rem;
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 8px;
+      color: var(--white);
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── VALUES ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+    }
+
+    .value-card { border-radius: 16px; padding: 24px; }
+    .value-card.pink   { background: linear-gradient(135deg, rgba(246,51,154,.9), rgba(230,0,118,.9)); }
+    .value-card.orange { background: linear-gradient(135deg, rgba(255,105,0,.9), rgba(245,73,0,.9)); }
+    .value-card.blue   { background: linear-gradient(135deg, rgba(43,127,255,.9), rgba(21,93,252,.9)); }
+    .value-card.green  { background: linear-gradient(135deg, rgba(0,201,80,.9), rgba(0,166,62,.9)); }
+
+    .value-card .vi {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+
+    .value-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+    .value-card p  { font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.9); }
+
+    /* ── HOW WE WORK ── */
+    .work-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 49px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .work-box h2 { font-size: 1.875rem; font-weight: 700; text-align: center; }
+
+    .work-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .work-item h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .work-item p  { font-size: 1.125rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
+
+    /* ── CTA ── */
+    .cta-block {
+      background: linear-gradient(90deg, var(--magenta2), var(--purple));
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .cta-block h2 { font-size: 3rem; font-weight: 700; margin-bottom: 24px; }
+    .cta-block p  { font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: 32px; line-height: 1.75; }
+
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 48px;
+      padding: 32px 105px;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 32px;
+      padding: 0 16px 24px;
+    }
+
+    footer h4 { font-size: 1.125rem; font-weight: 700; margin-bottom: 12px; }
+    footer p, footer a { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+    footer a:hover { color: var(--white); }
+
+    .footer-copy {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav, footer { padding-left: 24px; padding-right: 24px; }
+      .container, .hero, .stats, section { padding-left: 24px; padding-right: 24px; }
+      .hero { grid-template-columns: 1fr; padding-top: 40px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .help-cards, .cats-grid, .values-grid { grid-template-columns: 1fr; }
+      .about-box { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-top">
+      <div class="nav-brand">
+        <div class="nav-icon">🐱</div>
+        <div class="nav-brand-text">
+          <strong>Adote por Amor BC</strong>
+          <span>Computação &amp; Adoção Consciente</span>
+        </div>
+      </div>
+      <a class="nav-ig" href="https://www.instagram.com/adoteporamorbc/" target="_blank">
+        📷 @adoteporamorbc
+      </a>
+    </div>
+    <div class="nav-links">
+      <a class="nav-btn active" href="#">🏠 Início</a>
+      <a class="nav-btn" href="#sobre">ℹ️ Sobre</a>
+      <a class="nav-btn" href="#adotar">🐱 Adotar</a>
+      <a class="nav-btn" href="#ajudar">💚 Ajudar</a>
+      <div class="nav-divider"></div>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">🐾 Desde 2020 salvando vidas</div>
+      <h1>Adote por Amor,<br>Transforme Vidas</h1>
+      <p class="hero-sub">
+        Resgatamos gatinhos vítimas de maus-tratos e abandono em Balneário Camboriú.
+        Cada adoção é uma vida transformada. Faça parte dessa história! 💜
+      </p>
+      <div class="hero-buttons">
+        <a class="btn-white" href="#adotar">🐱 Adotar um Gatinho</a>
+        <a class="btn-outline" href="#ajudar">💚 Como Ajudar</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <img src="/img8.jpeg" alt="Gatinhos resgatados" />
+      <div class="hero-image-caption">Centenas de vidas já transformadas!</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.5) 0%,transparent 60%);pointer-events:none;"></div>
+    </div>
+  </div>
+
+  <!-- ── STATS ── -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Anos de dedicação</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Gatinhos resgatados</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Financiamento público</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Independente e voluntário</div>
+    </div>
+  </div>
+
+  <!-- ── HOW TO HELP ── -->
+  <section id="ajudar">
+    <h2 class="section-title">Como Você Pode Fazer a Diferença</h2>
+    <p class="section-sub">Existem várias formas de apoiar nossa causa</p>
+    <div class="help-cards">
+      <div class="help-card pink">
+        <div class="card-icon-circle">🏠</div>
+        <h3>Adote um Gatinho</h3>
+        <p>Dê um lar cheio de amor para um gatinho que precisa. Confira os disponíveis e encontre seu novo companheiro!</p>
+        <a class="card-link" href="#adotar">Ver gatinhos →</a>
+      </div>
+      <div class="help-card green">
+        <div class="card-icon-circle">💚</div>
+        <h3>Doe e Ajude</h3>
+        <p>Contribua financeiramente ou doe itens essenciais. Cada ajuda faz a diferença na vida desses gatinhos!</p>
+        <a class="card-link" href="#doe">Como ajudar →</a>
+      </div>
+      <div class="help-card blue">
+        <div class="card-icon-circle">🤝</div>
+        <h3>Seja Voluntário</h3>
+        <p>Ofereça seu tempo como lar temporário ou ajude na divulgação. Seu apoio é fundamental!</p>
+        <a class="card-link" href="https://www.instagram.com/adoteporamorbc/" target="_blank">Saiba mais →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="sobre">
+    <div class="about-box">
+      <div>
+        <h2>Sobre Nosso Trabalho</h2>
+        <p>A Adote por Amor surgiu em abril de 2020 com uma missão clara: resgatar gatinhos vítimas de maus-tratos e abandono, oferecendo a eles cuidados, amor e a chance de encontrar uma família para sempre.</p>
+        <p>Somos completamente independentes e contamos apenas com a generosidade de pessoas como você para continuar <u>nosso trabalho</u>.</p>
+        <a class="btn-outline-sm" href="https://www.instagram.com/adoteporamorbc/" target="_blank">Conheça Nossa História →</a>
+      </div>
+      <div class="about-grid">
+        <img src="/voluntarias.webp" alt="Voluntárias em evento de adoção" />
+        <img src="/img6.jpeg" alt="Gatinhos siameses" />
+        <img src="/img7.jpeg" alt="Gatinho no abrigo" />
+        <img src="/img5.webp" alt="Gatinho precisando de ajuda" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NOSSOS VALORES ── -->
+  <section>
+    <h2 class="section-title">Nossos Valores</h2>
+    <div class="values-grid" style="margin-top:32px;">
+      <div class="value-card pink">
+        <div class="vi">💜</div>
+        <h3>Amor</h3>
+        <p>Cada animal é tratado com carinho, respeito e dignidade</p>
+      </div>
+      <div class="value-card orange">
+        <div class="vi">🤝</div>
+        <h3>Responsabilidade</h3>
+        <p>Promovemos adoção consciente e guarda responsável</p>
+      </div>
+      <div class="value-card blue">
+        <div class="vi">📊</div>
+        <h3>Transparência</h3>
+        <p>Compartilhamos todas as despesas e doações recebidas</p>
+      </div>
+      <div class="value-card green">
+        <div class="vi">✅</div>
+        <h3>Compromisso</h3>
+        <p>Acompanhamos cada adoção e oferecemos suporte contínuo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW WE WORK ── -->
+  <section>
+    <div class="work-box">
+      <h2>Como Funcionamos</h2>
+      <div class="work-item">
+        <h3>🚨 Resgate</h3>
+        <p>Recebemos denúncias de maus-tratos ou encontramos animais em situação de vulnerabilidade nas ruas. Nossa equipe vai até o local e realiza o resgate com segurança e cuidado.</p>
+      </div>
+      <div class="work-item">
+        <h3>🏥 Cuidados Veterinários</h3>
+        <p>Todos os gatinhos passam por avaliação veterinária, recebem vacinas, são testados para FIV/FELV, vermifugados e castrados. Casos mais graves recebem tratamento especializado.</p>
+      </div>
+      <div class="work-item">
+        <h3>🏠 Lar Temporário</h3>
+        <p>Enquanto buscamos uma família definitiva, os gatinhos ficam em lares temporários com nossos voluntários, onde recebem amor, cuidados diários e socialização.</p>
+      </div>
+      <div class="work-item">
+        <h3>💕 Adoção Consciente</h3>
+        <p>Realizamos entrevistas criteriosas com os interessados para garantir que o animal irá para um lar adequado. Fornecemos orientações sobre guarda responsável e mantemos contato pós-adoção.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ADOPT ── -->
+  <section id="adotar">
+    <h2 class="section-title">Adote um Gatinho</h2>
+    <p class="section-sub">Encontre seu novo melhor amigo e transforme uma vida! 🐾💜</p>
+
+    <div class="notice">
+      <strong>Importante:</strong> Todos os nossos gatinhos são vacinados, castrados e testados para FIV/FELV.<br>
+      A adoção é gratuita, mas esperamos que você tenha estrutura e compromisso para oferecer um lar para sempre! ❤️
+    </div>
+
+    <h3 style="font-size:1.875rem;font-weight:700;text-align:center;margin-bottom:32px;">Gatinhos Disponíveis para Adoção</h3>
+
+    <div class="cats-grid">
+      <!-- Card 1 -->
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="/luna.webp" alt="Luna" />
+          <span class="cat-age">3 meses</span>
+        </div>
+        <div class="cat-body">
+          <div class="cat-header">
+            <span class="cat-name">Luna</span>
+            <span class="cat-gender">Fêmea</span>
+          </div>
+          <p class="cat-desc">Linda gatinha branca com laço, muito carinhosa e brincalhona. Adora colo!</p>
+          <div class="cat-badges">
+            <div class="cat-badge"><span class="check-green">✔</span> Vacinada</div>
+            <div class="cat-badge"><span class="check-green">✔</span> Castrada</div>
+            <div class="cat-badge"><span class="check-green">✔</span> FIV/FELV: Negativo</div>
+          </div>
+          <a class="btn-adopt" href="https://www.instagram.com/adoteporamorbc/" target="_blank">🐱 Quero Adotar Luna!</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="/trio.webp" alt="Trio" />
+          <span class="cat-age">Variadas</span>
+        </div>
+        <div class="cat-body">
+          <div class="cat-header">
+            <span class="cat-name">Trio</span>
+            <span class="cat-gender">Grupo</span>
+          </div>
+          <p class="cat-desc">Três gatinhos inseparáveis, muito tranquilos e sociáveis. Ideais para apartamento!</p>
+          <div class="cat-badges">
+            <div class="cat-badge"><span class="check-green">✔</span> Vacinados</div>
+            <div class="cat-badge"><span class="check-green">✔</span> Castrados</div>
+            <div class="cat-badge"><span class="check-green">✔</span> FIV/FELV: Negativo</div>
+          </div>
+          <a class="btn-adopt" href="https://www.instagram.com/adoteporamorbc/" target="_blank">🐱 Quero Adotar!</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="/mel.jpg" alt="Mel" />
+          <span class="cat-age">1 ano</span>
+        </div>
+        <div class="cat-body">
+          <div class="cat-header">
+            <span class="cat-name">Mel</span>
+            <span class="cat-gender">Fêmea</span>
+          </div>
+          <p class="cat-desc">Gatinha branca e preta, muito curiosa e ativa. Adora explorar o ambiente!</p>
+          <div class="cat-badges">
+            <div class="cat-badge"><span class="check-green">✔</span> Vacinada</div>
+            <div class="cat-badge"><span class="check-yellow">⚠</span> Castração pós-adoção</div>
+            <div class="cat-badge"><span class="check-green">✔</span> FIV/FELV: Negativo</div>
+          </div>
+          <a class="btn-adopt" href="https://www.instagram.com/adoteporamorbc/" target="_blank">🐱 Quero Adotar Mel!</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cats-more">
+      <p>Mais gatinhos disponíveis no nosso Instagram!</p>
+      <a class="btn-ig" href="https://www.instagram.com/adoteporamorbc/" target="_blank">📸 Ver Todos no Instagram</a>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section>
+    <div class="process-box">
+      <h2>Como Funciona o Processo de Adoção</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Escolha seu Gatinho</h3>
+          <p>Navegue pelas fotos e descrições dos gatinhos disponíveis em nosso Instagram ou nesta página. Veja qual combina mais com você e sua família!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Entre em Contato</h3>
+          <p>Envie uma mensagem pela Direct do Instagram ou e-mail demonstrando interesse. Informe qual gatinho você gostaria de conhecer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Entrevista</h3>
+          <p>Faremos algumas perguntas sobre sua rotina, moradia, experiência com pets e expectativas. É para garantir que o match seja perfeito para ambos!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Visita</h3>
+          <p>Agende uma visita para conhecer o gatinho pessoalmente. Veja se há conexão e tire todas as suas dúvidas com nossos voluntários.</p>
+        </div>
+      </div>
+      <div class="step" style="margin-bottom:0;">
+        <div class="step-num">5</div>
+        <div>
+          <h3>Adoção! 🎉</h3>
+          <p>Tudo certo? Você assina um termo de adoção responsável, recebe orientações de cuidados e leva seu novo amigo para casa! Mantemos contato para acompanhar a adaptação. 🐾💜</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DONATE ── -->
+  <section id="doe">
+    <div class="donate-section">
+      <h2>Eles Precisam da Sua Ajuda</h2>
+      <p class="sub">Somos 100% independentes e dependemos da sua generosidade para continuar salvando vidas.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+        <!-- Financeiro -->
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div class="card-icon-circle" style="background:rgba(0,201,80,0.3);">💰</div>
+            <h3 style="font-size:1.875rem;font-weight:700;">Doações Financeiras</h3>
+          </div>
+          <p style="font-size:1.25rem;line-height:2;color:rgba(255,255,255,0.9);margin-bottom:24px;">Sua contribuição ajuda a pagar veterinário, ração, medicamentos e todos os cuidados necessários.</p>
+          <div class="pix-box">
+            <h3>Chave PIX (E-mail):</h3>
+            <div class="pix-key">
+              <span>adoteporamorbc@gmail.com</span>
+              <button class="copy-btn" onclick="navigator.clipboard.writeText('adoteporamorbc@gmail.com');this.textContent='✅ Copiado!'">📋 Copiar</button>
+            </div>
+          </div>
+          <p style="font-size:1rem;color:rgba(255,255,255,0.8);margin-top:12px;font-style:italic;">
+            💡 Você pode doar qualquer valor, único ou recorrente.<br>
+            Banco: Santander · Titular: Bianca<br>
+            📸 Envie o comprovante para nosso Instagram ou e-mail.
+          </p>
+        </div>
+        <!-- Itens -->
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div class="card-icon-circle" style="background:rgba(152,16,250,0.3);">🎁</div>
+            <h3 style="font-size:1.875rem;font-weight:700;">Doações de Itens</h3>
+          </div>
+          <p style="font-size:1.25rem;line-height:2;color:rgba(255,255,255,0.9);margin-bottom:24px;">Aceitamos diversos itens essenciais para o cuidado dos gatinhos:</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:rgba(255,255,255,0.2);border-radius:14px;padding:16px;">
+              <strong>🍖 Alimentação:</strong> Ração seca (adulto e filhote), sachês e patês, leite para filhotes
+            </div>
+            <div style="background:rgba(255,255,255,0.2);border-radius:14px;padding:16px;">
+              <strong>🏖️ Higiene:</strong> Areia sanitária, caixas de areia, pás coletoras
+            </div>
+            <div style="background:rgba(255,255,255,0.2);border-radius:14px;padding:16px;">
+              <strong>💊 Saúde:</strong> Medicamentos (conforme necessidade), vermífugos, antipulgas
+            </div>
+            <div style="background:rgba(255,255,255,0.2);border-radius:14px;padding:16px;">
+              <strong>🎾 Acessórios:</strong> Brinquedos, arranhadores, caminhas, cobertores, caixas de transporte
+            </div>
+          </div>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.8);margin-top:16px;">
+            📍 <strong>Como doar itens:</strong> Entre em contato pelo Instagram ou e-mail para combinar a entrega.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section>
+    <div class="cta-block">
+      <h2>Pronto para Fazer a Diferença?</h2>
+      <p>Seja adotando, doando ou voluntariando, sua ajuda transforma vidas.<br>Juntos podemos dar uma vida melhor para esses gatinhos! 🐾💜</p>
+      <div class="cta-buttons">
+        <a class="btn-white" href="https://www.instagram.com/adoteporamorbc/" target="_blank">📸 Seguir no Instagram</a>
+        <a class="btn-outline" href="#adotar">🐱 Ver Gatinhos para Adoção</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Adote por Amor BC</h4>
+        <p>Resgatando gatinhos vítimas de maus-tratos e abandono desde 2020.<br>Balneário Camboriú – SC 🧡</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p>📱 <a href="https://www.instagram.com/adoteporamorbc/" target="_blank">@adoteporamorbc</a></p>
+        <p>📧 <a href="mailto:adoteporamorbc@gmail.com">adoteporamorbc@gmail.com</a></p>
+        <p>💰 PIX: adoteporamorbc@gmail.com</p>
+      </div>
+      <div>
+        <h4>Projeto de Extensão</h4>
+        <p>Computação &amp; Adoção Consciente</p>
+        <p>Unindo tecnologia e causa animal para gerar impacto e educação.</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2024 Adote por Amor BC. Feito com 💻 e 🐱 por estudantes de Ciência da Computação
+    </div>
+  </footer>
+
+</div><!-- /page -->
+</body>
+</html>
